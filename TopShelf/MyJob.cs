@@ -9,22 +9,20 @@ using Topshelf;
 
 namespace TopShelf
 {
-    public class MyJob : ServiceControl
-    {
-        public bool Start(HostControl hostControl)
-        {
+    public class MyJob 
+    {  
 
-            var Job = new QuartzManager(); 
+        public void Start()
+        {
+            var Job = new QuartzManager();
             Job.Excute<Job1>();
 
             Job.Start();
-
-            return true;
         }
 
-        public bool Stop(HostControl hostControl)
+        public void Stop()
         {
-            throw new NotImplementedException();
-        }
+
+        } 
     }
 }
