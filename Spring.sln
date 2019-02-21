@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swagger", "Swagger\Swagger.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D90A86F4-B888-4846-84FC-A113E9F5CAD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.MVC", "Core.MVC\Core.MVC.csproj", "{73A6DC8E-8E27-41FA-8C8C-FC63D7B28777}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,12 +39,17 @@ Global
 		{7BCBBD6E-BE82-4CBB-B462-DE77A8945113}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BCBBD6E-BE82-4CBB-B462-DE77A8945113}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BCBBD6E-BE82-4CBB-B462-DE77A8945113}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73A6DC8E-8E27-41FA-8C8C-FC63D7B28777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73A6DC8E-8E27-41FA-8C8C-FC63D7B28777}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73A6DC8E-8E27-41FA-8C8C-FC63D7B28777}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73A6DC8E-8E27-41FA-8C8C-FC63D7B28777}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1DDB4344-F7E2-4040-90D9-1CB69D2A0FBC} = {FDFA2BEF-482F-4A2A-8DCD-A5628EB48C8A}
+		{73A6DC8E-8E27-41FA-8C8C-FC63D7B28777} = {D90A86F4-B888-4846-84FC-A113E9F5CAD9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E40DE67C-F2EA-48A2-81F5-414833509837}
