@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Core.MVC
 {
@@ -17,28 +18,60 @@ namespace Core.MVC
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddSingleton<IWelCome, Welcome>(); // 
-            //services.AddTransient<IWelCome, Welcome>();
-            //services.AddScoped<IWelCome, Welcome>();
-
+            services.AddSingleton<IWelCome, Welcome>(); //单例
+            //services.AddTransient<IWelCome, Welcome>();  // 每次调用
+            //services.AddScoped<IWelCome, Welcome>();   // 每次http请求 
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IWelCome welcome)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IWelCome welcome,ILogger<Startup> logger)
         {
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
 
-            //app.Run(async (context) =>
-            //{
-            //    var wel = welcome.GetMessage();
-            //    await context.Response.WriteAsync("Hello World!");
+            /// 开发显示错误页面
+            if (env.IsDevelopment())
+            { 
+                app.UseDeveloperExceptionPage();
+            }
+
+
+
+            // 引入静态资源文件 
+            //app.UseDefaultFiles();
+            //app.UseStaticFiles();
+
+            //app.UseFileServer();
+
+
+            app.Run(async (context) =>
+            {  
+                await context.Response.WriteAsync("hello world");
+            });
+
+
+            //app.Use(next => {
+
+            //    logger.LogInformation("====== app.Use =======");
+            //    return async HttpContext =>
+            //    {
+
+            //        logger.LogInformation("======  async HttpContext  =====");
+            //        if (HttpContext.Request.Path.StartsWithSegments("/first"))
+            //        {
+            //            logger.LogInformation(" ====== first ===== ");
+            //             await HttpContext.Response.WriteAsync("First");
+            //        }
+            //        else
+            //        {
+            //             await HttpContext.Response.WriteAsync("Other");
+            //        } 
+            //    }; 
+
             //});
 
-            app.UseWelcomePage(new WelcomePageOptions() { Path = "/Home" }); 
+
+
+
 
         }
 
