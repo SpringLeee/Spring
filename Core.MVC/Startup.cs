@@ -17,39 +17,41 @@ namespace Core.MVC
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddSingleton<IWelCome, Welcome>(); //单例
+            services.AddMvc(); 
             //services.AddTransient<IWelCome, Welcome>();  // 每次调用
             //services.AddScoped<IWelCome, Welcome>();   // 每次http请求 
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IWelCome welcome,ILogger<Startup> logger)
-        {
-
-            /// 开发显示错误页面
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILogger<Startup> logger)
+        { 
+            // 开发显示错误页面
             if (env.IsDevelopment())
-            { 
+            {
                 app.UseDeveloperExceptionPage();
             }
-
-
+             
 
             // 引入静态资源文件 
-            //app.UseDefaultFiles();
             //app.UseStaticFiles();
+            //app.UseDefaultFiles(); 
+            app.UseFileServer(); 
 
-            //app.UseFileServer();
 
-
-            app.Run(async (context) =>
-            {  
-                await context.Response.WriteAsync("hello world");
+            app.UseMvc(build => {
+                build.MapRoute("Default","{controller=Home}/{action=Index}/{id?}");
             });
 
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("hello world");
+            //}); 
 
-            //app.Use(next => {
+
+
+            //app.Use(next =>
+            //{
 
             //    logger.LogInformation("====== app.Use =======");
             //    return async HttpContext =>
@@ -59,34 +61,17 @@ namespace Core.MVC
             //        if (HttpContext.Request.Path.StartsWithSegments("/first"))
             //        {
             //            logger.LogInformation(" ====== first ===== ");
-            //             await HttpContext.Response.WriteAsync("First");
+            //            await HttpContext.Response.WriteAsync("First");
             //        }
             //        else
             //        {
-            //             await HttpContext.Response.WriteAsync("Other");
-            //        } 
-            //    }; 
+            //            await HttpContext.Response.WriteAsync("Other");
+            //        }
+            //    };
 
             //});
 
-
-
-
-
-        }
-
-        public interface IWelCome
-        {
-             string GetMessage();
-        }
-
-        public class Welcome : IWelCome
-        {
-            public string GetMessage()
-            {
-                return "heheda";
-            }
-        }
+        } 
 
     } 
   
