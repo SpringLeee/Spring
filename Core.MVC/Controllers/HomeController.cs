@@ -82,5 +82,10 @@ namespace Core.MVC.Controllers
             return Redirect("/Home/GetView");
         }
 
+        public IActionResult GetConfig()
+        {
+            return Content("");
+        }
+
     }
 }

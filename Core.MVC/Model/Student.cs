@@ -8,10 +8,10 @@ namespace Core.MVC.Model
 {
     public class Student
     {
+        [Key]
         public int Id { get; set; }
-        public string FirstName { get; set; }
-
-        [MinLength(10)]
+        public string FirstName { get; set; } 
+        
         public string LastName { get; set; }  
     }
 }
