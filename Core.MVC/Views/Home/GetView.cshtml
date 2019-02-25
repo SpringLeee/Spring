@@ -1,16 +1,16 @@
-﻿@model IEnumerable<Core.MVC.Model.Student>;
+﻿@model IEnumerable<Core.MVC.ViewModel.StudentViewModel>;
 @{
     ViewData["Title"] = "GetView";
 }
 
 <h1>GetView</h1>
 
- 
-
 
 @foreach (var item in Model)
 {
-    <p>@item.LastName</p>
+    <p>@item.Name</p>
+    //<a href="/Home/Detail/@item.Id">@item.Name</a>
+    <a asp-action="Detail"   asp-route-id="@item.Id">@item.Id</a>
 }
 
 

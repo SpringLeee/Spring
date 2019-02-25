@@ -1,5 +1,6 @@
 ﻿using Core.MVC.Model;
 using Core.MVC.Services;
+using Core.MVC.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -48,10 +49,21 @@ namespace Core.MVC.Controllers
 
 
             var list = _repository.GetList();
-            return View(list);
+            var vmList = list.Select(x => new StudentViewModel {
+                Id = x.Id,
+                Name = x.FirstName + x.LastName,
+                Age = 15 
+            });
 
-        } 
+            return View(vmList);  
 
+        }
+
+        public IActionResult Detail(int id)
+        { 
+
+            return View(_repository.GetList().Where(x => x.Id == id).Select(x=> new StudentViewModel { Id = x.Id,Name = x.FirstName + x.LastName, Age = 10 }).FirstOrDefault());
+        }
 
 
     }
