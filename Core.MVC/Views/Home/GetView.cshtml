@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Core.MVC.Model.Student>;
+@{
+    ViewData["Title"] = "GetView";
+}
+
+<h1>GetView</h1>
+
+ 
+
+
+@foreach (var item in Model)
+{
+    <p>@item.LastName</p>
+}
+
+
