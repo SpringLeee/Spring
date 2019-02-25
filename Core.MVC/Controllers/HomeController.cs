@@ -7,9 +7,9 @@ namespace Core.MVC.Controllers
 {
     public class HomeController
     {
-        public string Index()
+        public string Index(int id = 0)
         {
-            return "Home....";
+            return $"Home....id:{id}";
         } 
     }
 }
