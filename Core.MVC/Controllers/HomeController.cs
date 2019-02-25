@@ -2,6 +2,7 @@
 using Core.MVC.Services;
 using Core.MVC.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,6 +66,17 @@ namespace Core.MVC.Controllers
             return View(_repository.GetList().Where(x => x.Id == id).Select(x=> new StudentViewModel { Id = x.Id,Name = x.FirstName + x.LastName, Age = 10 }).FirstOrDefault());
         }
 
+        public IActionResult Create()
+        {
+            return View(); 
+        }
+
+        [HttpPost]
+        public IActionResult Create(Student student)
+        {
+            _repository.Add(student);
+            return Redirect("/Home/GetView");
+        }
 
     }
 }

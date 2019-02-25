@@ -20,7 +20,7 @@ namespace Core.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<IRepository<Student>, InMemoryRepository>();
+            services.AddSingleton<IRepository<Student>, InMemoryRepository>();
             //services.AddTransient<IWelCome, Welcome>();  // 每次调用
             //services.AddScoped<IWelCome, Welcome>();   // 每次http请求 
 
