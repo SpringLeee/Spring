@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 
 namespace Core.MVC
@@ -17,23 +18,25 @@ namespace Core.MVC
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-            services.AddSingleton<IWelCome, Welcome>(); //单例
+            services.AddMvc(); 
+            //services.AddSingleton<IWelCome,Welcome>();    // 单例
             //services.AddTransient<IWelCome, Welcome>();  // 每次调用
-            //services.AddScoped<IWelCome, Welcome>();   // 每次http请求 
+            //services.AddScoped<IWelCome, Welcome>();     // 每次http请求 
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IWelCome welcome,ILogger<Startup> logger)
-        {
-
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IWelCome welcome,ILogger<Startup> logger,IWelCome wel)
+        { 
             /// 开发显示错误页面
             if (env.IsDevelopment())
             { 
                 app.UseDeveloperExceptionPage();
             }
-
+            else
+            {
+                app.UseExceptionHandler();
+            }
 
 
             // 引入静态资源文件 
@@ -43,12 +46,12 @@ namespace Core.MVC
             //app.UseFileServer();
 
 
-            app.UseMvcWithDefaultRoute(); 
+            //app.UseMvc(builder => builder.MapRoute("default","{controller=Home}/{action=Index}/{id?}"));
 
-            //app.Run(async (context) =>
-            //{  
-            //    await context.Response.WriteAsync("hello world");
-            //});
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync(wel.GetMessage());
+            });
 
 
             //app.Use(next => {
@@ -69,9 +72,7 @@ namespace Core.MVC
             //        } 
             //    }; 
 
-            //});
-
-
+            //}); 
 
 
 
@@ -80,7 +81,8 @@ namespace Core.MVC
         public interface IWelCome
         {
              string GetMessage();
-        }
+        } 
+        
 
         public class Welcome : IWelCome
         {

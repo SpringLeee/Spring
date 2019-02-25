@@ -10,7 +10,6 @@ namespace Core.MVC.Controllers
         public string Index()
         {
             return "Home....";
-        }
-
+        } 
     }
 }
