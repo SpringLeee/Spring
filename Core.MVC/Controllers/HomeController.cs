@@ -74,7 +74,11 @@ namespace Core.MVC.Controllers
         [HttpPost]
         public IActionResult Create(Student student)
         {
-            _repository.Add(student);
+            if (this.ModelState.IsValid)
+            {
+                _repository.Add(student);
+            } 
+            
             return Redirect("/Home/GetView");
         }
 
