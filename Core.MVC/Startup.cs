@@ -17,7 +17,7 @@ namespace Core.MVC
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddMvc();
             services.AddSingleton<IWelCome, Welcome>(); //单例
             //services.AddTransient<IWelCome, Welcome>();  // 每次调用
             //services.AddScoped<IWelCome, Welcome>();   // 每次http请求 
@@ -43,10 +43,12 @@ namespace Core.MVC
             //app.UseFileServer();
 
 
-            app.Run(async (context) =>
-            {  
-                await context.Response.WriteAsync("hello world");
-            });
+            app.UseMvcWithDefaultRoute(); 
+
+            //app.Run(async (context) =>
+            //{  
+            //    await context.Response.WriteAsync("hello world");
+            //});
 
 
             //app.Use(next => {

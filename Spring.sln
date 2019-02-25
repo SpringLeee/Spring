@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swagger", "Swagger\Swagger.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D90A86F4-B888-4846-84FC-A113E9F5CAD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.MVC", "Core.MVC\Core.MVC.csproj", "{73A6DC8E-8E27-41FA-8C8C-FC63D7B28777}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.MVC", "Core.MVC\Core.MVC.csproj", "{73A6DC8E-8E27-41FA-8C8C-FC63D7B28777}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
