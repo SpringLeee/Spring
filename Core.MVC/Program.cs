@@ -19,7 +19,7 @@ namespace Core.MVC
            
             Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .Enrich.FromLogContext().
-                WriteTo.Console().WriteTo.File(new Serilog.Formatting.Json.JsonFormatter(), @"Logs\log.txt", rollingInterval: RollingInterval.Minute)
+                WriteTo.Console().WriteTo.File(new Serilog.Formatting.Json.JsonFormatter(), @"Logs\log.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
 
 
