@@ -22,6 +22,7 @@ namespace Core.MVC.Controllers
 
         public IActionResult Index(int id = 0)
         {
+            throw new Exception("error");
             //this.ControllerContext.ActionDescriptor.ActionName; 
             return this.Content("Home...");
         }
@@ -85,6 +86,11 @@ namespace Core.MVC.Controllers
         public IActionResult GetConfig()
         {
             return Content("");
+        }
+
+        public IActionResult Error()
+        {
+            return Content("Error....");
         }
 
     }

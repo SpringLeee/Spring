@@ -9,6 +9,7 @@ using Core.MVC.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +38,7 @@ namespace Core.MVC
 
             services.AddMvc();
             services.AddScoped<IRepository<Student>, EFCoreRepository>();
+            
             //services.AddTransient<IWelCome, Welcome>();  // 每次调用
             //services.AddScoped<IWelCome, Welcome>();   // 每次http请求 
 
@@ -44,13 +46,21 @@ namespace Core.MVC
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILogger<Startup> logger)
-        { 
-            // 开发显示错误页面
+        {
+
+
+            //app.UseWelcomePage();
+            //app.UseDeveloperExceptionPage();
+            //app.UseExceptionHandler("/Home/Error"); 
+
+
+
+            //开发显示错误页面
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-             
+
 
 
             // 引入静态资源文件 
