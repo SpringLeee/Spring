@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.MVC.Data;
+using Core.MVC.Filters;
 using Core.MVC.Model;
 using Core.MVC.Services;
 using Microsoft.AspNetCore.Builder;
@@ -38,6 +39,14 @@ namespace Core.MVC
 
             services.AddMvc();
             services.AddScoped<IRepository<Student>, EFCoreRepository>();
+
+
+            // 这里添加过滤器
+            services.AddMvc(x =>{
+
+                x.Filters.Add(new LogResourceFilter()); 
+
+            });
             
             //services.AddTransient<IWelCome, Welcome>();  // 每次调用
             //services.AddScoped<IWelCome, Welcome>();   // 每次http请求 
@@ -69,7 +78,7 @@ namespace Core.MVC
             app.UseFileServer(); 
 
 
-            app.UseMvc(build => {
+            app.UseMvc(build => {  
                 build.MapRoute("Default","{controller=Home}/{action=Index}/{id?}");
             });
 

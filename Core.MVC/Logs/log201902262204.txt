@@ -1,0 +1,1 @@
+{"Timestamp":"2019-02-26T22:04:59.3986604+08:00","Level":"Information","MessageTemplate":"User profile is available. Using '{FullName}' as key repository and Windows DPAPI to encrypt keys at rest.","Properties":{"FullName":"C:\\Users\\10287\\AppData\\Local\\ASP.NET\\DataProtection-Keys","SourceContext":"Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager"}}

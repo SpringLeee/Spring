@@ -1,4 +1,5 @@
-﻿using Core.MVC.Model;
+﻿using Core.MVC.Filters;
+using Core.MVC.Model;
 using Core.MVC.Services;
 using Core.MVC.ViewModel;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace Core.MVC.Controllers
 {
+
+    //[LogResourceFilter]
     public class HomeController : Controller
     {
         private readonly IRepository<Student> _repository;
@@ -22,7 +25,7 @@ namespace Core.MVC.Controllers
 
         public IActionResult Index(int id = 0)
         {
-            throw new Exception("error");
+            
             //this.ControllerContext.ActionDescriptor.ActionName; 
             return this.Content("Home...");
         }
