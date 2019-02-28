@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28621.142
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quartz.Net", "Quartz.Net\Quartz.Net.csproj", "{74A6472E-AD5D-4808-AD2F-3899E6BB6026}"
 EndProject
@@ -18,6 +18,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.MVC", "Core.MVC\Core.MVC.csproj", "{73A6DC8E-8E27-41FA-8C8C-FC63D7B28777}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{707F21B3-B758-4446-BCDD-62331E644FF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer4", "IdentityServer4", "{54E05E90-4CDF-43F3-AA83-C5EB94CF1F6D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{99F94DFE-246D-4F79-8C23-EDB1BC892C83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMVCAuthorizationCode", "CoreMVCAuthorizationCode\CoreMVCAuthorizationCode.csproj", "{E0BEF8B2-46E1-4CEB-B6F3-DC36FBFC5E83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +55,14 @@ Global
 		{707F21B3-B758-4446-BCDD-62331E644FF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{707F21B3-B758-4446-BCDD-62331E644FF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{707F21B3-B758-4446-BCDD-62331E644FF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F94DFE-246D-4F79-8C23-EDB1BC892C83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F94DFE-246D-4F79-8C23-EDB1BC892C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F94DFE-246D-4F79-8C23-EDB1BC892C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F94DFE-246D-4F79-8C23-EDB1BC892C83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0BEF8B2-46E1-4CEB-B6F3-DC36FBFC5E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0BEF8B2-46E1-4CEB-B6F3-DC36FBFC5E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0BEF8B2-46E1-4CEB-B6F3-DC36FBFC5E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0BEF8B2-46E1-4CEB-B6F3-DC36FBFC5E83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +70,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1DDB4344-F7E2-4040-90D9-1CB69D2A0FBC} = {FDFA2BEF-482F-4A2A-8DCD-A5628EB48C8A}
 		{73A6DC8E-8E27-41FA-8C8C-FC63D7B28777} = {D90A86F4-B888-4846-84FC-A113E9F5CAD9}
+		{99F94DFE-246D-4F79-8C23-EDB1BC892C83} = {54E05E90-4CDF-43F3-AA83-C5EB94CF1F6D}
+		{E0BEF8B2-46E1-4CEB-B6F3-DC36FBFC5E83} = {54E05E90-4CDF-43F3-AA83-C5EB94CF1F6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E40DE67C-F2EA-48A2-81F5-414833509837}
