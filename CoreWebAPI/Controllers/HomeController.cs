@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CoreWebAPI.Models; 
+using CoreWebAPI.Models;
+using CoreWebAPI.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,11 +13,11 @@ namespace CoreWebAPI.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        public LocalDBContext DB { get; set; }
+        public StudentService service { get; set; }
 
-        public HomeController(LocalDBContext db)
+        public HomeController(StudentService studentService)
         {
-            DB = db;
+            service = studentService;
         }
 
 
@@ -42,14 +43,7 @@ namespace CoreWebAPI.Controllers
         [HttpGet]
         public IActionResult EFCoreAdd()
         {
-            for (int i = 1; i < 100; i++)
-            {
-                DB.Students.Add(new Students { Id= i, FirstName = i.ToString() ,LastName = i.ToString() }); 
-            }
-
-            DB.SaveChanges();
-
-            var list = DB.Students.ToList();
+            var list = service.GetList().Result;
 
             return Ok(new { code = 0, msg = "处理成功", data = list });
         } 

@@ -1,4 +1,5 @@
 ﻿using System;
+using CoreWebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
@@ -13,7 +14,7 @@ namespace CoreWebAPI
             
         }
 
-        public virtual DbSet<Students> Students { get; set; } 
+        public virtual DbSet<Student> Students { get; set; } 
         
      
     }
