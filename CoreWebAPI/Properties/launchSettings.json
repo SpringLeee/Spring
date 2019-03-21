@@ -1,9 +1,9 @@
 ﻿{ 
-  "profiles": { 
+  "profiles": {
     "CoreWebAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/Home/Index",
+      "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5124",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

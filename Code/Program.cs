@@ -11,25 +11,13 @@ namespace Code
     {
         static void Main(string[] args)
         {
-            var list = new List<int>();
-
-            for (int i = 0; i < 10000; i++)
-            {
-                list.Add(i);
-            }
-
-            Parallel.ForEach(list, new ParallelOptions { MaxDegreeOfParallelism = 10}, o=> {
-
-
-                Thread.Sleep(5000);
-
-
-                Console.WriteLine(o); 
-
-            });
-
+            new RandomClass().Test1(); 
 
             Console.ReadKey();
+
+
+
+
 
         }
     }
