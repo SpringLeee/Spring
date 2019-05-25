@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Code.异步;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,13 +12,11 @@ namespace Code
     {
         static void Main(string[] args)
         {
-            new RandomClass().Test1(); 
+            // new RandomClass().Test1();
 
-            Console.ReadKey();
+            new Class1().Excute();
 
-
-
-
+            Console.ReadKey();  
 
         }
     }
