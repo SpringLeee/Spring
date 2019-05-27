@@ -33,7 +33,9 @@ namespace ML.NET.Demo
             // 创建训练任务
             var session = new LearningSession(mlContext, trainers);
 
-            // 读入训练数据集以及测试数据集
+            // 读入训练数据集以及测试数据集 
+
+
             var trainingDataView = session.LoadDataView("student-mat.txt");
             var testingDataView = session.LoadDataView("student-mat-test.txt");
 
