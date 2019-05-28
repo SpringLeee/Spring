@@ -119,8 +119,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseModel.cs" />
     <Compile Include="Compute.cs" />
     <Compile Include="LearningSession.cs" />
+    <Compile Include="PredictionBaseModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentPredictionModel.cs" />

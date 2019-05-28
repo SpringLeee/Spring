@@ -36,9 +36,11 @@ namespace ML.NET.Demo
             // 读入训练数据集以及测试数据集 
 
 
-            var trainingDataView = session.LoadDataView("student-mat.txt");
-            var testingDataView = session.LoadDataView("student-mat-test.txt");
+            var trainingDataView = session.LoadDataView("Data/BaseData.txt");
+            var testingDataView = session.LoadDataView("Data/PBaseData.txt");
 
+
+            
 
             Console.WriteLine(">>> 开始测试并评估...");
             Console.WriteLine();
@@ -61,18 +63,18 @@ namespace ML.NET.Demo
             Console.WriteLine("以下是基于测试样本数据的预测结果");
             Console.WriteLine("==============================");
             var winnerModel = session.GetTrainedModel(winnerAlgorithmName);
-            var samples = ReadPredictionSamples();
+            var samples = ReadPredictionSamples().ToList();
             foreach (var sample in samples)
             {
                 var prediction = session.Predict(winnerModel, sample);
-                Console.WriteLine($"测试样本G2: {sample.G3}，预测值：{prediction.PredictedG2}");
+                Console.WriteLine($"测试样本G2: {sample.WearPoint}，预测值：{prediction.PWear}");
             }
             Console.WriteLine();
 
 
         }
 
-        static IEnumerable<StudentTrainingModel> ReadPredictionSamples()
+        static IEnumerable<BaseModel> ReadPredictionSamples()
         {
             object ConvertValue(string val, Type toType)
             {
@@ -84,8 +86,8 @@ namespace ML.NET.Demo
                 return val;
             }
 
-            var predictionSamples = new List<StudentTrainingModel>();
-            using (var fileStream = new FileStream("student-mat-test.txt", FileMode.Open, FileAccess.Read))
+            var predictionSamples = new List<BaseModel>();
+            using (var fileStream = new FileStream("Data/PBaseData.txt", FileMode.Open, FileAccess.Read))
             {
                 using (var textReader = new StreamReader(fileStream))
                 {
@@ -102,17 +104,21 @@ namespace ML.NET.Demo
                         else
                         {
                             var values = line.Split('\t');
-                            var sample = new StudentTrainingModel();
+                            var sample = new BaseModel();
                             for (var idx = 0; idx < values.Length; idx++)
                             {
                                 var column = columns[idx];
-                                var fieldInfo = typeof(StudentTrainingModel)
+                                var fieldInfo = typeof(BaseModel)
                                     .GetFields()
                                     .FirstOrDefault(x => string.Equals(x.Name, column, StringComparison.InvariantCultureIgnoreCase));
 
                                 if (fieldInfo != null)
                                 {
-                                    fieldInfo.SetValue(sample, ConvertValue(values[idx], fieldInfo.FieldType));
+                                    var cc = values[idx];
+
+                                    var bb = ConvertValue(cc, fieldInfo.FieldType);
+
+                                    fieldInfo.SetValue(sample,bb);
                                 }
                             }
 

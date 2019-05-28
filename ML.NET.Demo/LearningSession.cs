@@ -26,29 +26,24 @@ namespace ML.NET.Demo
             {
                 Columns = new TextLoader.Column[]
                 {
-                    new TextLoader.Column("School", DataKind.String, 0),
-                    new TextLoader.Column("Sex", DataKind.String, 1),
-                    new TextLoader.Column("Age", DataKind.Single, 2),
-                    new TextLoader.Column("Famsize", DataKind.String, 4),
-                    new TextLoader.Column("Guardian", DataKind.String, 11),
-                    new TextLoader.Column("Traveltime", DataKind.Single, 12),
-                    new TextLoader.Column("Studytime", DataKind.Single, 13),
-                    new TextLoader.Column("Failures", DataKind.Single, 14),
-                    new TextLoader.Column("Paid", DataKind.String, 17),
-                    new TextLoader.Column("Higher", DataKind.String, 20),
-                    new TextLoader.Column("Famrel", DataKind.Single, 23),
-                    new TextLoader.Column("Absences", DataKind.Single, 29),
-                    new TextLoader.Column("G2", DataKind.Single, 30)
+                    new TextLoader.Column("Cutter", DataKind.String, 0),
+                    new TextLoader.Column("WorkType", DataKind.String, 1),
+                    new TextLoader.Column("Cool", DataKind.String, 2),
+                    new TextLoader.Column("MainRate", DataKind.Single, 3),
+                    new TextLoader.Column("InPoint", DataKind.Single, 4),
+                    new TextLoader.Column("InSpeed", DataKind.Single, 5),
+                    new TextLoader.Column("CutSpeed", DataKind.Single, 6),
+                    new TextLoader.Column("CutEat", DataKind.Single, 7),
+                    new TextLoader.Column("WearPoint", DataKind.Single, 8)
                 }
             });
 
-            trainers.AddRange(regressionTrainers); 
-
+            trainers.AddRange(regressionTrainers);  
         }
 
-        public StudentPredictionModel Predict(ITransformer trainedModel, StudentTrainingModel model)
+        public PredictionBaseModel Predict(ITransformer trainedModel, BaseModel model)
         {
-            var engine = trainedModel.CreatePredictionEngine<StudentTrainingModel, StudentPredictionModel>(mlContext);
+            var engine = trainedModel.CreatePredictionEngine<BaseModel, PredictionBaseModel>(mlContext);
             return engine.Predict(model);
         }
 
@@ -58,35 +53,27 @@ namespace ML.NET.Demo
         {
             var metrics = new Dictionary<string, RegressionMetrics>();
             foreach (var trainer in this.trainers)
-            {
-                var pipeline = mlContext.Transforms.CopyColumns(inputColumnName: "G2", outputColumnName: "Label")
-                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("School"))
-                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Sex"))
-                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Age"))
-                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Famsize"))
-                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Guardian"))
-                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Traveltime"))
-                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Studytime"))
-                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Failures"))
-                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Paid"))
-                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Higher"))
-                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Famrel"))
-                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Absences"))
+            { 
+                var pipeline = mlContext.Transforms.CopyColumns(inputColumnName: "WearPoint", outputColumnName: "Label")
+                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Cutter"))
+                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("WorkType"))
+                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("Cool"))
+                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("MainRate"))
+                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("InPoint"))
+                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("InSpeed"))
+                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("CutSpeed"))
+                    .Append(mlContext.Transforms.Categorical.OneHotEncoding("CutEat"))
                     .Append(mlContext.Transforms.Concatenate("Features",
-                        "School",
-                        "Sex",
-                        "Age",
-                        "Famsize",
-                        "Guardian",
-                        "Traveltime",
-                        "Studytime",
-                        "Failures",
-                        "Paid",
-                        "Higher",
-                        "Famrel",
-                        "Absences"))
+                        "Cutter",
+                        "WorkType",
+                        "Cool",
+                        "MainRate",
+                        "InPoint",
+                        "InSpeed",
+                        "CutSpeed",
+                        "CutEat"))
                     .AppendCacheCheckpoint(mlContext)
-                    .Append(trainer);
+                    .Append(trainer);  
 
                 var trainedModel = pipeline.Fit(trainingDataView);
                 trainedModels.Add(trainer.GetType().Name, trainedModel);
